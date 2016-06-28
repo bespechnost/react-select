@@ -209,7 +209,8 @@ var Option = _react2['default'].createClass({
 		onSelect: _react2['default'].PropTypes.func, // method to handle click on option element
 		onUnfocus: _react2['default'].PropTypes.func, // method to handle mouseLeave on option element
 		option: _react2['default'].PropTypes.object.isRequired, // object that is base for that option
-		optionIndex: _react2['default'].PropTypes.number // index of the option, used to generate unique ids for aria
+		optionIndex: _react2['default'].PropTypes.number, // index of the option, used to generate unique ids for aria
+		labelKey: _react2['default'].PropTypes.string
 	},
 
 	blockEvent: function blockEvent(event) {
@@ -288,7 +289,7 @@ var Option = _react2['default'].createClass({
 				onTouchEnd: this.handleTouchEnd,
 				id: instancePrefix + '-option-' + optionIndex,
 				title: option.title },
-			option.create ? this.props.addLabelText.replace('{label}', option.label) : this.props.children
+			option.create ? this.props.addLabelText.replace('{label}', option[this.props.labelKey]) : this.props.children
 		);
 	}
 });
@@ -1319,7 +1320,8 @@ var Select = _react2['default'].createClass({
 									option: option,
 									addLabelText: _this4.props.addLabelText,
 									isSelected: isSelected,
-									ref: optionRef
+									ref: optionRef,
+									labelKey: _this4.props.labelKey
 								},
 								renderLabel(option)
 							);
