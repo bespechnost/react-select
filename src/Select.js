@@ -102,6 +102,7 @@ const Select = React.createClass({
 		return {
 			addLabelText: 'Add "{label}"?',
 			autosize: true,
+			autoBlur:true,
 			allowCreate: false,
 			backspaceRemoves: true,
 			backspaceToRemoveMessage: 'Press backspace to remove {label}',
@@ -654,7 +655,7 @@ const Select = React.createClass({
 					onClick={onClick}
 					value={valueArray[0]}
 				>
-					{renderLabel(valueArray[0])}
+					{!isOpen?renderLabel(valueArray[0]):null}
 				</ValueComponent>
 			);
 		}
