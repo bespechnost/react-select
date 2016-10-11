@@ -790,12 +790,13 @@ const Select = React.createClass({
 		}
 		if (this.props.allowCreate && filterValue) {
 			let addNewOption = true;
-			//NOTE: only add the "Add" option if none of the options are an exact match
-			filteredOptions.map(option => {
-				if (option[this.props.labelKey].toLowerCase() === filterValue || option[this.props.valueKey].toLowerCase() === filterValue) {
-					addNewOption = false;
-				}
-			});
+			if (!this.props.allowRepeatingItems) {
+				filteredOptions.map(option => {
+					if (option[this.props.labelKey].toLowerCase() === filterValue || option[this.props.valueKey].toLowerCase() === filterValue) {
+						addNewOption = false;
+					}
+				});
+			}
 			if (addNewOption) {
 				let newOption = this.props.newOptionCreator ? this.props.newOptionCreator(originalFilterValue) : {
 					value: originalFilterValue,

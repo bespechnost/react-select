@@ -249,6 +249,7 @@ function cleanInput(inputValue) {
 :-----------------------|:--------------|:--------------|:--------------------------------
 	addLabelText	|	string	|	'Add "{label}"?'	|	text to display when `allowCreate` is true
 	allowCreate	|	bool	|	false		|	allow new options to be created in multi mode (displays an "Add \<option> ?" item when a value not already in the `options` array is entered)
+	allowRepeatingItems | bool | false | allow to create item with value that is already presented in the `options` array
 	autoBlur	|	bool | false | Blurs the input element after a selection has been made. Handy for lowering the keyboard on mobile devices
 	autofocus       |       bool    |      undefined        |  autofocus the component on mount
 	autoload 	|	bool	|	true		|	whether to auto-load the default async options set

@@ -47,6 +47,7 @@ var AllowCreate = React.createClass({
 				<h3 className="section-heading">{this.props.label}</h3>
 				<Select
 					allowCreate={this.props.allowCreate}
+					allowRepeatingItems
 					value={this.state.value}
 					multi
 					placeholder="Select your favourite(s)"
