@@ -436,6 +436,7 @@ var Select = _react2['default'].createClass({
 		return {
 			addLabelText: 'Add "{label}"?',
 			autosize: true,
+			autoBlur: true,
 			allowCreate: false,
 			backspaceRemoves: true,
 			backspaceToRemoveMessage: 'Press backspace to remove {label}',
@@ -1020,7 +1021,7 @@ var Select = _react2['default'].createClass({
 					onClick: onClick,
 					value: valueArray[0]
 				},
-				renderLabel(valueArray[0])
+				!isOpen ? renderLabel(valueArray[0]) : null
 			);
 		}
 	},
@@ -1143,12 +1144,13 @@ var Select = _react2['default'].createClass({
 		}
 		if (this.props.allowCreate && filterValue) {
 			var addNewOption = true;
-			//NOTE: only add the "Add" option if none of the options are an exact match
-			filteredOptions.map(function (option) {
-				if (option[_this3.props.labelKey].toLowerCase() === filterValue || option[_this3.props.valueKey].toLowerCase() === filterValue) {
-					addNewOption = false;
-				}
-			});
+			if (!this.props.allowRepeatingItems) {
+				filteredOptions.map(function (option) {
+					if (option[_this3.props.labelKey].toLowerCase() === filterValue || option[_this3.props.valueKey].toLowerCase() === filterValue) {
+						addNewOption = false;
+					}
+				});
+			}
 			if (addNewOption) {
 				var newOption = this.props.newOptionCreator ? this.props.newOptionCreator(originalFilterValue) : {
 					value: originalFilterValue,
